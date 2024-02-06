@@ -1,14 +1,14 @@
-import 'package:bloc_example/features/home/bloc/home_bloc.dart';
 import 'package:bloc_example/features/home/models/home_product_data_modal.dart';
+import 'package:bloc_example/features/wishlist/bloc/wishlist_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ProductTileWidget extends StatelessWidget {
+class WishListTileWidget extends StatelessWidget {
   final ProductDataModal productDataModal;
-  final HomeBloc homeBloc;
+  final WishlistBloc wishlistBloc;
 
-  const ProductTileWidget(
-      {super.key, required this.productDataModal, required this.homeBloc});
+  const WishListTileWidget(
+      {super.key, required this.productDataModal, required this.wishlistBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -51,22 +51,13 @@ class ProductTileWidget extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      homeBloc.add(
-                        HomeProductWishlistButtonClickedEvent(
-                          clickedProduct: productDataModal,
-                        ),
-                      );
+                      wishlistBloc.add(ItemRemoveFromWishListEvent(
+                          productDataModal: productDataModal));
                     },
                     icon: const Icon(Icons.favorite_border_outlined),
                   ),
                   IconButton(
-                    onPressed: () {
-                      homeBloc.add(
-                        HomeProductCartButtonClickedEvent(
-                          clickedProduct: productDataModal,
-                        ),
-                      );
-                    },
+                    onPressed: () {},
                     icon: const Icon(CupertinoIcons.cart),
                   ),
                 ],

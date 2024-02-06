@@ -13,8 +13,7 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial()) {
-    //
-    // Events
+    // On Events do ====(--
     on<HomeInitialEvent>(homeInitialEvent);
 
     on<HomeProductWishlistButtonClickedEvent>(
@@ -26,6 +25,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     on<HomeCartButtonNavigateEvent>(homeCartButtonNavigateEvent);
   }
+
+  // --)====these Methods
 
   FutureOr<void> homeInitialEvent(
       HomeInitialEvent event, Emitter<HomeState> emit) async {
@@ -43,37 +44,39 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                 imageUrl: e['imageUrl'],
               ),
             )
-            .toList(),
+            .toList(growable: true),
       ),
     );
   }
 
   FutureOr<void> homeProductWishlistButtonClickedEvent(
       HomeProductWishlistButtonClickedEvent event, Emitter<HomeState> emit) {
-    print('Wishlist Product clicked');
     wishListItems.add(event.clickedProduct);
 
-    emit(HomeProductItemWishListedActionState());
-    print('Wishlist Product add');
+    emit(
+      HomeProductItemWishListedActionState(),
+    );
   }
 
   FutureOr<void> homeWishlistButtonNavigateEvent(
       HomeWishlistButtonNavigateEvent event, Emitter<HomeState> emit) {
-    print('Wishlist Navigate clicked');
-    emit(HomeNavigateToWishListPageActionState());
+    emit(
+      HomeNavigateToWishListPageActionState(),
+    );
   }
 
   FutureOr<void> homeProductCartButtonClickedEvent(
       HomeProductCartButtonClickedEvent event, Emitter<HomeState> emit) {
-    print('Cart Product clicked');
     cartItems.add(event.clickedProduct);
-    emit(HomeProductItemCartActionState());
-    print('Cart Product add');
+    emit(
+      HomeProductItemCartActionState(),
+    );
   }
 
   FutureOr<void> homeCartButtonNavigateEvent(
       HomeCartButtonNavigateEvent event, Emitter<HomeState> emit) {
-    print('Cart Navigate clicked');
-    emit(HomeNavigateToCartPageActionState());
+    emit(
+      HomeNavigateToCartPageActionState(),
+    );
   }
 }

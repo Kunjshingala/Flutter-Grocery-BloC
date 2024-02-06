@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
             );
 
           case HomeLoadedSuccessState:
-            final successState = state as HomeLoadedSuccessState;
+            final homeSuccessState = state as HomeLoadedSuccessState;
             return Scaffold(
               appBar: AppBar(
                 title: const Text(
@@ -77,6 +77,7 @@ class _HomeState extends State<Home> {
                 iconTheme: const IconThemeData(color: Colors.black),
                 actions: [
                   IconButton(
+                    tooltip: 'To Wishlist',
                     onPressed: () {
                       print('WishlistButton Navigate Event');
                       homeBloc.add(HomeWishlistButtonNavigateEvent());
@@ -84,6 +85,7 @@ class _HomeState extends State<Home> {
                     icon: const Icon(Icons.favorite_border_outlined),
                   ),
                   IconButton(
+                    tooltip: 'to Cart',
                     onPressed: () {
                       print('CartButton Navigate Event');
                       homeBloc.add(HomeCartButtonNavigateEvent());
@@ -93,11 +95,11 @@ class _HomeState extends State<Home> {
                 ],
               ),
               body: ListView.builder(
-                itemCount: successState.products.length,
+                itemCount: homeSuccessState.products.length,
                 itemBuilder: (context, index) {
                   return ProductTileWidget(
                       homeBloc: homeBloc,
-                      productDataModal: successState.products[index]);
+                      productDataModal: homeSuccessState.products[index]);
                 },
               ),
             );
