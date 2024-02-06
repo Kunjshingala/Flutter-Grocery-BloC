@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'counter_cubit.dart';
-import 'counter_page.dart';
+import 'features/home/ui/home.dart';
 
-void main() => runApp(const CounterApp());
+void main() {
+  runApp(MyApp());
+}
 
-class CounterApp extends StatelessWidget {
-  const CounterApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BlocProvider(
-        create: (_) => CounterCubit(),
-        child: const CounterPage(),
+      home: Home(),
+      theme: ThemeData(
+        primaryColor: Colors.teal,
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
